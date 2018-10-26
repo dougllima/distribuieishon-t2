@@ -12,7 +12,7 @@ public class SharedResourceExample {
 
     private String jubileu= ""; //palavrapraeleicao
    
-    private float read() throws IOException {
+    public static float read() throws IOException {
         BufferedReader input = new BufferedReader(new FileReader(FILENAME));
         String last, line;
 
@@ -24,10 +24,13 @@ public class SharedResourceExample {
         return Float.parseFloat(last);
 	}
 
-    private void write(float number) throws IOException {
+    public static void write(int id, float last, float number) throws IOException {
         Writer output;
         output = new BufferedWriter(new FileWriter(FILENAME, true));
-        String line = String.valueOf(number) + "\n";
+        String line = String.valueOf(id) + "\n";
+        line += String.valueOf(last) + "\n";
+        line += String.valueOf(number) + "\n";
+        line += "\n";
         output.append(line);
         output.close();
     }
@@ -41,6 +44,9 @@ public class SharedResourceExample {
         resource.write(number);
         System.out.println("Processo " + id + " escreveu valor " + number);
 
+
+
+
     }
     //eleicao
     //centralizado
@@ -51,14 +57,14 @@ public class SharedResourceExample {
         //le a string jubileu e ve qual o maior id
         //chama Elege(com maior id)josias
 
-
+        return idIni;
     }
     public static void Elege(int id){
         //seta id pra ser
         //pega id troca boolean duque
     }
 
-    //
+    //queue of requests (garantir o token de embaixador quando alguem parar de usar)
 
 
 }

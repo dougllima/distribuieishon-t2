@@ -1,3 +1,5 @@
+import java.io.IOException;
+
 public class cliente {
     //minimo 10 operacoes
     //minimo 5 processos ao msm tempo
@@ -9,13 +11,23 @@ public class cliente {
     int id;
     int proximo;
     boolean embaixador; //mestre
+    int balas =10;
 
     public void executa(){
-        //while
+        while(true){
+    //TEM Q USAR O LOCK E UNLOCK EM VEZ DE BOOLEAN TA NO LINK DO TODO DO DRIVE
+            // no capitulo 15 ali ta separado certinho
         verificaSeguinte();
-        if(embaixador == true)
+        if(embaixador == true && balas >0)
         {
-            //mandaBala
+            mandaBala();
+            dalheProSeguinte();
+            balas--;
+        }
+        if(balas==0){
+            encerra();
+        }
+
         }
     }
 
@@ -53,7 +65,14 @@ public class cliente {
         //manda o seguinte virar embaixador
     }
     public void mandaBala(){
-        //usa shared manda escrever
+        try {
+            float number = SharedResourceExample.read();
+            System.out.println("Processo " + id + " leu valor " + number);
+            number = number + id;
+            SharedResourceExample.write(number);
+        } catch (IOException condessa) {
+            condessa.printStackTrace();
+        }
     }
 
 }
