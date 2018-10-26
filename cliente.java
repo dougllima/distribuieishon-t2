@@ -17,6 +17,8 @@ public class cliente {
         while(true){
     //TEM Q USAR O LOCK E UNLOCK EM VEZ DE BOOLEAN TA NO LINK DO TODO DO DRIVE
             // no capitulo 15 ali ta separado certinho
+            //http://www.gecg.in/papers/ds5thedn.pdf
+            requestToken();
         verificaSeguinte();
         if(embaixador == true && balas >0)
         {
